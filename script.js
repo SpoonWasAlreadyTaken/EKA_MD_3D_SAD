@@ -9,8 +9,7 @@ var up = 0;
 var down = 0;
 var mouseX = 0;
 var mouseY = 0;
-var mouseDX = 0;
-var mouseDY = 0;
+var locked = false;
 
 var map = [
             [0,100,0,90,0,0,2000,2000,"#555555"],

@@ -51,20 +51,41 @@ document.addEventListener("keyup", (event) => {
 	}
 
 	document.addEventListener("keydown", (event) => {
-		if(event.keyCode === 27){
+		if (event.keyCode === 27)
+		{
 			document.exitPointerLock();
 		}
 	});
 
-	addEventListener("mousemove", (e) => {
 
-		onpointermove = (e) => {
-			deltaX = e.movementX / 2;
-			deltaY = -(e.movementY / 2);
-	
-			mouseX += deltaX;
-			mouseY += deltaY;
-		};
-	});
+	document.addEventListener("pointerlockchange", () => {
+		
+		console.log(locked);
+
+		if (locked === true) 
+		{
+			console.log("sandwich");
+			addEventListener("mousemove", (e) => {
+	  
+				onpointermove = (e) => {
+					deltaX = e.movementX / 2;
+					deltaY = -(e.movementY / 2);
+			  
+					mouseX += deltaX;
+					mouseY += deltaY;
+				};
+			});
+		}
+
+		if (locked === false)
+		{
+			locked = true;
+		}
+		else
+		{
+			locked = false;
+		}
+	  });
+
 
 
