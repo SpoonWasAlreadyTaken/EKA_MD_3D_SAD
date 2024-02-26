@@ -50,9 +50,11 @@ document.addEventListener("keyup", (event) => {
 		document.body.requestPointerLock();
 	}
 
-	document.onkeydown = () => {
-		document.exitPointerLock();
-	}
+	document.addEventListener("keydown", (event) => {
+		if(event.keyCode === 27){
+			document.exitPointerLock();
+		}
+	});
 
 	addEventListener("mousemove", (e) => {
 
