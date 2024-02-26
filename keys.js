@@ -58,34 +58,30 @@ document.addEventListener("keyup", (event) => {
 	});
 
 
-	document.addEventListener("pointerlockchange", () => {
+    document.addEventListener("pointerlockchange", () => {
+                
+        if (locked == false)
+        {
+            locked = true;
+        }
+        else if (locked == true)
+        {
+            locked = false;
+        }
 		
-		console.log(locked);
-
-		if (locked === true) 
-		{
-			console.log("sandwich");
-			addEventListener("mousemove", (e) => {
-	  
-				onpointermove = (e) => {
-					deltaX = e.movementX / 2;
-					deltaY = -(e.movementY / 2);
-			  
-					mouseX += deltaX;
-					mouseY += deltaY;
-				};
-			});
-		}
-
-		if (locked === false)
-		{
-			locked = true;
-		}
-		else
-		{
-			locked = false;
-		}
-	  });
+        addEventListener("mousemove", (e) => {
+                console.log("sandwich");
+                onpointermove = (e) => {
+                    if(locked) {
+                        deltaX = e.movementX / 2;
+                        deltaY = -(e.movementY / 2);
+                    
+                        mouseX += deltaX;
+                        mouseY += deltaY;
+                    }
+                };
+        });
+      });
 
 
 
