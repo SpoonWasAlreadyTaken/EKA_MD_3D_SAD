@@ -5,13 +5,21 @@ var forward = 0;
 var backward = 0;
 var left = 0;
 var right = 0;
+var up = 0;
+var down = 0;
+var mouseX = 0;
+var mouseY = 0;
+var mouseDX = 0;
+var mouseDY = 0;
 
 var map = [
             [0,100,0,90,0,0,2000,2000,"#555555"],
             [0,0,-1000,0,0,0,2000,200,"#FF0000"],//prieksaa siena
             [0,0,1000,0,0,0,2000,200,"#FF0000"], // siena aizmugure
             [1000,0,0,0,90,0,2000,200,"#FFFF00"],//laba siena
-            [-1000,0,0,0,90,0,2000,200,"#FF00FF"]
+            [-1000,0,0,0,90,0,2000,200,"#FF00FF"],
+            [500,-965,0,90,60,0,2000,2000,"#4C00FF"],
+            [-500,-965,0,90,-60,0,2000,2000,"#A85E32"]
 ];
 
 function player(x, y, z){
@@ -24,16 +32,18 @@ var pawn = new player(0,0,0);
 
 function update(){
     let dx = left - right;
-    //pawn.y = up - down;
+    let dy = up - down;
     let dz = forward - backward;
+    
+    let mx = mouseX;
+    let my = mouseY;
 
     pawn.x += dx;
     pawn.z += dz;
+    pawn.y += dy;
 
-    //console.log(pawn.x);
+    world.style.transform = `translate3d(${pawn.x}px, ${pawn.y}px, ${pawn.z}px) rotateX(${my}deg) rotateY(${mx}deg) rotateZ(0deg)`;
 
-    console.log(pawn.z);
-    world.style.transform = `translate3d(${pawn.x}px, 0px, ${pawn.z}px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
 }
 
 function createWorld(){
